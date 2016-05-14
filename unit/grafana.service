@@ -1,0 +1,31 @@
+[Unit]
+Description=grafana
+Documentation=http://grafana.org https://hub.docker.com/r/grafana/grafana
+After=anna.service
+
+[Service]
+Restart=on-failure
+RestartSec=1
+StartLimitInterval=300s
+StartLimitBurst=3
+TimeoutStartSec=0
+
+EnvironmentFile=/etc/environment
+
+# Start the service.
+ExecStart=/usr/bin/docker run --rm --name=grafana \
+  -p ${COREOS_PRIVATE_IPV4}:3000:3000 \
+  grafana/grafana:3.0.1
+
+# Setup traefik backend and frontend.
+ExecStartPost=/usr/bin/etcdctl set /traefik/backends/grafana-backend/servers/%N/url http://${COREOS_PRIVATE_IPV4}:3000
+ExecStartPost=/usr/bin/etcdctl set /traefik/backends/grafana-backend/servers/%N/weight 1
+ExecStartPost=/usr/bin/etcdctl set /traefik/frontends/grafana-frontend/backend grafana-backend
+ExecStartPost=/usr/bin/etcdctl set /traefik/frontends/grafana-frontend/routes/grafana/rule Host:grafana.anna.local
+
+# Teardown traefik backend and frontend.
+ExecStop=/usr/bin/etcdctl rm --recursive /traefik/backends/grafana-backend
+ExecStop=/usr/bin/etcdctl rm --recursive /traefik/frontends/grafana-frontend
+
+# Stop the service.
+ExecStop=/usr/bin/docker stop grafana

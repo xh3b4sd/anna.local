@@ -1,0 +1,18 @@
+[Unit]
+Description=anna
+Documentation=https://anna.earth https://github.com/xh3b4sd/anna
+After=redis.service
+
+[Service]
+Restart=on-failure
+RestartSec=1
+StartLimitInterval=300s
+StartLimitBurst=3
+TimeoutStartSec=0
+
+EnvironmentFile=/etc/environment
+
+# Start the service.
+ExecStart=/usr/bin/docker run --rm --name=anna \
+  -p ${COREOS_PRIVATE_IPV4}:9119:9119 \
+  anna

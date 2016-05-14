@@ -3,6 +3,7 @@ $num_instances = 1
 $instance_name = "anna.local"
 $update_channel = "stable"
 $image_version = "current"
+$git_branch = "metrics" # TODO needs to be changed to master before merge
 $vm_gui = false
 $vm_memory = 2048
 $vm_cpus = 2

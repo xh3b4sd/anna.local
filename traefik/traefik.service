@@ -16,7 +16,7 @@ EnvironmentFile=/etc/environment
 ExecStart=/usr/bin/docker run --rm --name=traefik \
   -p ${COREOS_PRIVATE_IPV4}:80:80 \
   -p ${COREOS_PRIVATE_IPV4}:8080:8080 \
-  -v /tmp/anna.local/traefik.toml:/etc/traefik/traefik.toml \
+  -v /tmp/anna.local/traefik/traefik.toml:/etc/traefik/traefik.toml \
   traefik:v1.0.0-beta.404 --web --etcd --etcd.endpoint=${COREOS_PRIVATE_IPV4}:4001
 
 # Setup traefik backend and frontend.

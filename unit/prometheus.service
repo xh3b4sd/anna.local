@@ -1,0 +1,30 @@
+[Unit]
+Description=prometheus
+Documentation=https://prometheus.io https://hub.docker.com/r/prom/prometheus
+
+[Service]
+Restart=on-failure
+RestartSec=1
+StartLimitInterval=300s
+StartLimitBurst=3
+TimeoutStartSec=0
+
+EnvironmentFile=/etc/environment
+
+# Start the service.
+ExecStart=/usr/bin/docker run --rm --name=prometheus \
+  -p ${COREOS_PRIVATE_IPV4}:9090:9090 \
+  prom/prometheus:0.18.0
+
+# Setup traefik backend and frontend.
+ExecStartPost=/usr/bin/etcdctl set /traefik/backends/prometheus-backend/servers/%N/url http://${COREOS_PRIVATE_IPV4}:9090
+ExecStartPost=/usr/bin/etcdctl set /traefik/backends/prometheus-backend/servers/%N/weight 1
+ExecStartPost=/usr/bin/etcdctl set /traefik/frontends/prometheus-frontend/backend prometheus-backend
+ExecStartPost=/usr/bin/etcdctl set /traefik/frontends/prometheus-frontend/routes/prometheus/rule Host:prometheus.anna.local
+
+# Teardown traefik backend and frontend.
+ExecStop=/usr/bin/etcdctl rm --recursive /traefik/backends/prometheus-backend
+ExecStop=/usr/bin/etcdctl rm --recursive /traefik/frontends/prometheus-frontend
+
+# Stop the service.
+ExecStop=/usr/bin/docker stop prometheus

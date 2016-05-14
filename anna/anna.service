@@ -2,6 +2,7 @@
 Description=anna
 Documentation=https://anna.earth https://github.com/xh3b4sd/anna
 After=redis.service
+Requires=redis.service
 
 [Service]
 Restart=on-failure

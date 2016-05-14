@@ -2,6 +2,7 @@
 Description=traefik
 Documentation=https://traefik.io https://hub.docker.com/r/library/traefik
 After=grafana.service
+Requires=grafana.service
 
 [Service]
 Restart=on-failure

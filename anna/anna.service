@@ -15,4 +15,4 @@ EnvironmentFile=/etc/environment
 # Start the service.
 ExecStart=/usr/bin/docker run --rm --name=anna \
   -p ${COREOS_PRIVATE_IPV4}:9119:9119 \
-  xh3b4sd/anna:879a065 --addr=${COREOS_PRIVATE_IPV4}:9119 --storage=redis --storage-addr=${COREOS_PRIVATE_IPV4}:6379
+  xh3b4sd/anna:879a065 anna --addr=${COREOS_PRIVATE_IPV4}:9119 --storage=redis --storage-addr=${COREOS_PRIVATE_IPV4}:6379

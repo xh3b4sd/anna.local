@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd /tmp/anna.local/unit/
+cd /tmp/anna.local/
 
-fleetctl start prometheus.service
-fleetctl start redis.service
-fleetctl start anna.service
-fleetctl start grafana.service
-fleetctl start traefik.service
+fleetctl start prometheus/prometheus.service
+fleetctl start anna/redis.service
+fleetctl start anna/anna.service
+fleetctl start grafana/grafana.service
+fleetctl start traefik/traefik.service

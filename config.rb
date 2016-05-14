@@ -3,7 +3,6 @@ $num_instances = 1
 $instance_name = "anna.local"
 $update_channel = "stable"
 $image_version = "current"
-$git_branch = "metrics" # TODO needs to be changed to master before merge
 $vm_gui = false
 $vm_memory = 2048
 $vm_cpus = 2
@@ -13,16 +12,16 @@ if File.exists?('user-data.tmpl') && ARGV[0].eql?('up')
   require 'open-uri'
   require 'yaml'
 
-  token = open($new_discovery_url).read
+  discovery_url = open($new_discovery_url).read
 
   data = YAML.load(IO.readlines('user-data.tmpl')[1..-1].join)
 
   if data.key? 'coreos' and data['coreos'].key? 'etcd'
-    data['coreos']['etcd']['discovery'] = token
+    data['coreos']['etcd']['discovery'] = discovery_url
   end
 
   if data.key? 'coreos' and data['coreos'].key? 'etcd2'
-    data['coreos']['etcd2']['discovery'] = token
+    data['coreos']['etcd2']['discovery'] = discovery_url
   end
 
   # Fix for YAML.load() converting reboot-strategy from 'off' to `false`

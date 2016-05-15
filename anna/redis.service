@@ -2,7 +2,6 @@
 Description=redis
 Documentation=http://redis.io https://hub.docker.com/_/redis
 After=prometheus.service
-Requires=prometheus.service
 
 [Service]
 Restart=on-failure

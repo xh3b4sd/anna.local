@@ -2,7 +2,6 @@
 Description=grafana
 Documentation=http://grafana.org https://hub.docker.com/r/grafana/grafana
 After=anna.service
-Requires=anna.service
 
 [Service]
 Restart=on-failure

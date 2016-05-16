@@ -15,7 +15,7 @@ EnvironmentFile=/etc/environment
 # Start the service.
 ExecStart=/usr/bin/docker run --rm --name=anna \
   -p ${COREOS_PRIVATE_IPV4}:9119:9119 \
-  xh3b4sd/anna:3166393 anna --addr=0.0.0.0:9119 --control-log-verbosity=13 --storage=redis --storage-addr=${COREOS_PRIVATE_IPV4}:6379
+  xh3b4sd/anna:7de5938 anna --addr=0.0.0.0:9119 --control-log-verbosity=13 --storage=redis --storage-addr=${COREOS_PRIVATE_IPV4}:6379
 
 # Setup traefik backend and frontend.
 ExecStartPost=/usr/bin/etcdctl set /traefik/backends/anna-backend/servers/%N/url http://${COREOS_PRIVATE_IPV4}:9119

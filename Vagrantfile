@@ -34,7 +34,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.define $instance_name do |config|
     config.vm.hostname = $instance_name
-    config.hostsupdater.aliases = ["grafana.#{config.vm.hostname}", "prometheus.#{config.vm.hostname}", "traefik.#{config.vm.hostname}"]
+    config.hostsupdater.aliases = [
+      "anna.#{config.vm.hostname}",
+      "grafana.#{config.vm.hostname}",
+      "prometheus.#{config.vm.hostname}",
+      "traefik.#{config.vm.hostname}",
+    ]
 
     config.vm.network :private_network, ip: "192.168.33.101"
     config.vm.network :forwarded_port, guest: 22, host: 2101, id: 'ssh'

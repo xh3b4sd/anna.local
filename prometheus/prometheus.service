@@ -14,7 +14,8 @@ EnvironmentFile=/etc/environment
 # Start the service.
 ExecStart=/usr/bin/docker run --rm --name=prometheus \
   -p ${COREOS_PRIVATE_IPV4}:9090:9090 \
-  prom/prometheus:0.18.0
+  -v /tmp/anna.local/prometheus/prometheus.toml:/etc/prometheus/prometheus.yml \
+  prom/prometheus:0.18.0 --config.file=/etc/prometheus/prometheus.yml
 
 # Setup traefik backend and frontend.
 ExecStartPost=/usr/bin/etcdctl set /traefik/backends/prometheus-backend/servers/%N/url http://${COREOS_PRIVATE_IPV4}:9090

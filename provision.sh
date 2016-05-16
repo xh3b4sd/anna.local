@@ -9,7 +9,7 @@ fleetctl start grafana/grafana.service
 fleetctl start traefik/traefik.service
 
 # Wait until grafana is up.
-while [ $(curl -s http://admin:admin@grafana.anna.local/api/dashboards/home | jq .meta.isHome) != true ]; do
+while [ "$(curl -s http://admin:admin@grafana.anna.local/api/dashboards/home | jq .meta.isHome)" != "true" ]; do
   sleep 1
 done
 

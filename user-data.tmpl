@@ -5,7 +5,7 @@ coreos:
   update:
     reboot-strategy: 'off'
   etcd2:
-    discovery: https://discovery.etcd.io/$new_discovery_url
+    #discovery: this is generated and replaced in config.rb
     advertise-client-urls: http://$public_ipv4:2379
     initial-advertise-peer-urls: http://$private_ipv4:2380
     listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001

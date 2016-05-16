@@ -26,13 +26,22 @@ Vagrant.configure("2") do |config|
     vb.gui = $vm_gui
     vb.memory = $vm_memory
     vb.cpus = $vm_cpus
+
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--nictype1", "virtio" ]
+    vb.customize ["modifyvm", :id, "--nictype2", "virtio" ]
   end
 
   config.vm.define $instance_name do |config|
     config.vm.hostname = $instance_name
-    config.hostsupdater.aliases = ["grafana.#{config.vm.hostname}", "prometheus.#{config.vm.hostname}", "traefik.#{config.vm.hostname}"]
+    config.hostsupdater.aliases = [
+      "anna.#{config.vm.hostname}",
+      "grafana.#{config.vm.hostname}",
+      "prometheus.#{config.vm.hostname}",
+      "traefik.#{config.vm.hostname}",
+    ]
 
-    config.vm.network :private_network, ip: "172.17.8.101"
+    config.vm.network :private_network, ip: "192.168.33.101"
     config.vm.network :forwarded_port, guest: 22, host: 2101, id: 'ssh'
     config.vm.network :forwarded_port, guest: 80, host: 9119
 

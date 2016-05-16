@@ -22,6 +22,11 @@ hostnames manually to your hosts file, or let the vagrant plugin do its job.
 vagrant up
 ```
 
+### anna address
+```
+http://anna.anna.local
+```
+
 ### grafana dashboard
 ```
 http://grafana.anna.local

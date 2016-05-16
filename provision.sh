@@ -9,8 +9,8 @@ fleetctl start grafana/grafana.service
 fleetctl start traefik/traefik.service
 
 # Wait until grafana is up.
-curl --output /dev/null --silent --fail http://admin:admin@grafana.anna.local/api/dashboards/home
-while [ $? -ne ]; do
+until curl --output /dev/null --silent --fail http://admin:admin@grafana.anna.local/api/dashboards/home
+do
   sleep 1
 done
 

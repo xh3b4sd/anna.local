@@ -1,0 +1,7 @@
+{
+  "name":"prometheus-data-source",
+  "type":"prometheus",
+  "url":"http://prometheus.anna.local",
+  "access":"direct",
+  "basicAuth":false
+}

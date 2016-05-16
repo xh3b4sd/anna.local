@@ -49,5 +49,5 @@ coreos:
 
       [Service]
       User=core
-      ExecStartPre=/usr/bin/git clone --branch metrics https://github.com/xh3b4sd/anna.local.git /tmp/anna.local/
+      ExecStartPre=/usr/bin/git clone https://github.com/xh3b4sd/anna.local.git /tmp/anna.local/
       ExecStart=/usr/bin/sh /tmp/anna.local/provision.sh

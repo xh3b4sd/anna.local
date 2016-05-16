@@ -1,6 +1,6 @@
 {
   "dashboard": {
-    "id": null,
+    "id": 1,
     "title": "New dashboard",
     "originalTitle": "New dashboard",
     "tags": [],
@@ -11,87 +11,87 @@
     "sharedCrosshair": false,
     "rows": [
       {
+        "collapse": false,
+        "editable": true,
         "height": "250px",
         "panels": [
           {
-            "title": "Panel Title",
-            "error": false,
-            "span": 12,
+            "aliasColors": {},
+            "bars": false,
+            "datasource": "prometheus-data-source",
             "editable": true,
-            "type": "graph",
-            "isNew": true,
+            "error": false,
+            "fill": 1,
+            "grid": {
+              "threshold1": null,
+              "threshold1Color": "rgba(216, 200, 27, 0.27)",
+              "threshold2": null,
+              "threshold2Color": "rgba(234, 112, 112, 0.22)"
+            },
             "id": 1,
+            "isNew": true,
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": true,
+              "total": false,
+              "values": false
+            },
+            "lines": true,
+            "linewidth": 2,
+            "nullPointMode": "connected",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "span": 12,
+            "stack": false,
+            "steppedLine": false,
             "targets": [
               {
                 "expr": "histogram_quantile(0.9, rate(anna_Storage_Redis_Set_durations_histogram_milliseconds_bucket[10m]))",
                 "intervalFactor": 2,
                 "refId": "A",
-                "metric": "anna_Storage_Redis_Set_durations_histogram_milliseconds_bucket",
-                "step": 2
+                "step": 2,
+                "metric": "anna_Storage_Redis_Set_durations_histogram_milliseconds_bucket"
               }
             ],
-            "datasource": null,
-            "renderer": "flot",
-            "yaxes": [
-              {
-                "label": null,
-                "show": true,
-                "logBase": 1,
-                "min": null,
-                "max": null,
-                "format": "ms"
-              },
-              {
-                "label": null,
-                "show": true,
-                "logBase": 1,
-                "min": null,
-                "max": null,
-                "format": "short"
-              }
-            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Panel Title",
+            "tooltip": {
+              "msResolution": true,
+              "shared": true,
+              "value_type": "cumulative"
+            },
+            "type": "graph",
             "xaxis": {
               "show": true
             },
-            "grid": {
-              "threshold1": null,
-              "threshold2": null,
-              "threshold1Color": "rgba(216, 200, 27, 0.27)",
-              "threshold2Color": "rgba(234, 112, 112, 0.22)"
-            },
-            "lines": true,
-            "fill": 1,
-            "linewidth": 2,
-            "points": false,
-            "pointradius": 5,
-            "bars": false,
-            "stack": false,
-            "percentage": false,
-            "legend": {
-              "show": true,
-              "values": false,
-              "min": false,
-              "max": false,
-              "current": false,
-              "total": false,
-              "avg": false
-            },
-            "nullPointMode": "connected",
-            "steppedLine": false,
-            "tooltip": {
-              "value_type": "cumulative",
-              "shared": true,
-              "msResolution": false
-            },
-            "timeFrom": null,
-            "timeShift": null,
-            "aliasColors": {},
-            "seriesOverrides": []
+            "yaxes": [
+              {
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
           }
         ],
-        "title": "Row",
-        "collapse": false,
-        "editable": true
+        "title": "Row"
       }
     ],
     "time": {
@@ -99,17 +99,6 @@
       "to": "now"
     },
     "timepicker": {
-      "time_options": [
-        "5m",
-        "15m",
-        "1h",
-        "6h",
-        "12h",
-        "24h",
-        "2d",
-        "7d",
-        "30d"
-      ],
       "refresh_intervals": [
         "5s",
         "10s",
@@ -121,6 +110,17 @@
         "1h",
         "2h",
         "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
       ]
     },
     "templating": {
@@ -130,7 +130,7 @@
       "list": []
     },
     "schemaVersion": 12,
-    "version": 0,
+    "version": 1,
     "links": []
   }
 }
